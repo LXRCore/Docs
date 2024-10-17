@@ -1,4 +1,4 @@
-# LXRCore, with all sections fully implemented. This script includes core functionalities such as player management, inventory handling, item usage, server callbacks, notifications, localization, and more. It is designed to allow other developers to integrate their scripts seamlessly with the LXRCore framework.
+## LXRCore, with all sections fully implemented. This script includes core functionalities such as player management, inventory handling, item usage, server callbacks, notifications, localization, and more. It is designed to allow other developers to integrate their scripts seamlessly with the LXRCore framework.
  
 ```lua
 -- lxrcore.lua
