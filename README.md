@@ -455,3 +455,5 @@ return LXRCore
 - **Updating AI Bot**: All information about LXRCore and the scripts have been updated in this script. The code now includes fully implemented functions without placeholders, as requested.
 
 If you need further assistance or additional features added to the `lxrcore.lua` script, feel free to let me know!
+
+also, you can use our AI Bot.  https://chatgpt.com/g/g-qmLlOHYGa-lux-redm-framework
