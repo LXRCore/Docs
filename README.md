@@ -456,4 +456,4 @@ return LXRCore
 
 If you need further assistance or additional features added to the `lxrcore.lua` script, feel free to let me know!
 
-also, you can use our AI Bot.  https://chatgpt.com/g/g-qmLlOHYGa-lux-redm-framework
+also, you can use our AI Bot.  [https://chatgpt.com/g/g-qmLlOHYGa-lux-redm-framework](https://chatgpt.com/g/g-BHWBnVcFd-lxrcore-redm-framework)
