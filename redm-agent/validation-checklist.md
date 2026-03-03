@@ -171,6 +171,34 @@ Use this checklist before delivering any RedM resource to ensure all standards a
 
 ═══════════════════════════════════════════════════════════════════════════════
 
+## 📦 Tebex Escrow Compliance
+
+### Resource Naming
+- [ ] Resource folder name exactly matches `name` field in `fxmanifest.lua`
+- [ ] `name` uses `lxr-` prefix (e.g., `lxr-example`)
+- [ ] `author` is `iBoss21 / The Lux Empire`
+- [ ] `version` follows semantic versioning (e.g., `1.0.0`)
+- [ ] `description` is clear and accurate for Tebex product page
+
+### Technical Escrow Safety
+- [ ] No `require()` calls (use fxmanifest declarations instead)
+- [ ] No `loadfile()` calls
+- [ ] No `dofile()` calls
+- [ ] All script files declared in `fxmanifest.lua`
+- [ ] No hardcoded sensitive data (Discord tokens, API keys, IPs)
+- [ ] `Config.Debug = false` as default (NEVER ship debug mode enabled)
+
+### Escrow File Classification
+- [ ] `fxmanifest.lua` — NOT obfuscated (required by FXServer runtime)
+- [ ] `config.lua` — NOT obfuscated (buyer must configure settings)
+- [ ] `shared/framework-bridge.lua` — Obfuscated (proprietary code)
+- [ ] `client/*.lua` — Obfuscated (proprietary code)
+- [ ] `server/*.lua` — Obfuscated (proprietary code)
+- [ ] `html/` files — NOT obfuscated (browser requires readable HTML/CSS/JS)
+- [ ] `README.md` and docs — NOT obfuscated (documentation must be readable)
+
+═══════════════════════════════════════════════════════════════════════════════
+
 ## 📚 Documentation
 
 ### Required Files
@@ -332,6 +360,7 @@ Does this resource follow ALL standards?
 - [ ] Documentation Requirements ✓
 - [ ] Screenshots & Assets ✓
 - [ ] Delivery Format ✓
+- [ ] Tebex Escrow Compliance ✓
 
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -353,6 +382,10 @@ If ANY of the following are true, the resource **FAILS** and must be corrected:
 ❌ Core logic has direct framework calls  
 ❌ Missing startup boot print  
 ❌ No section banners in config  
+❌ Resource folder name does not match `name` in fxmanifest  
+❌ `require()` / `loadfile()` / `dofile()` calls present  
+❌ `Config.Debug = true` shipped in production  
+❌ Hardcoded Discord tokens, API keys, or server IPs  
 
 ═══════════════════════════════════════════════════════════════════════════════
 
