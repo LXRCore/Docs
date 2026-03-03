@@ -42,6 +42,7 @@ This documentation defines the **authoritative production-grade standards** for 
 8. [**Documentation Requirements**](./standards/documentation.md) - Required docs structure
 9. [**Screenshots & Assets**](./standards/screenshots.md) - Visual documentation requirements
 10. [**Delivery Format**](./standards/delivery-format.md) - Output order and completeness
+11. [**Tebex Escrow Compliance**](./standards/tebex-escrow.md) - Requirements for Tebex store submission
 
 ### Templates
 - [**Config Template**](./templates/config.lua) - Full branded config.lua
@@ -52,8 +53,7 @@ This documentation defines the **authoritative production-grade standards** for 
 - [**README Template**](./templates/README.md) - Resource README structure
 
 ### Examples
-- [**Complete Example Resource**](./examples/lxr-example/) - Full working example
-- [**Reference: lxr-proploot**](https://github.com/iboss21/lxr-proploot) - Authoritative style reference
+- [**Complete Example Resource**](./examples/lxr-example/) - Full working example demonstrating all standards
 
 ### Quick References
 - [**Validation Checklist**](./validation-checklist.md) - Pre-delivery validation
@@ -132,7 +132,8 @@ Config.ServerInfo = {
 3. Copy [FXManifest Template](./templates/fxmanifest.lua)
 4. Copy [Framework Bridge Template](./templates/framework-bridge.lua)
 5. Review [Complete Example](./examples/lxr-example/)
-6. Validate with [Validation Checklist](./validation-checklist.md)
+6. Review [Tebex Escrow Compliance](./standards/tebex-escrow.md)
+7. Validate with [Validation Checklist](./validation-checklist.md)
 
 ### For Developers Converting Resources
 
