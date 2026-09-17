@@ -50,12 +50,6 @@ six inks, one accent, radius 0, index rows, Fraunces / Inter / JetBrains Mono / 
 Sans Georgian shipped with the resource. Copy `ui-kit/html/` into a resource and read
 the guide; open `ui-kit/styleguide-standalone.html` in a browser to see every component.
 
-## Writing resources for LXRCore
-
-The [redm-agent](redm-agent/README.md) folder holds the standards every
-`lxr-*` resource follows (structure, fxmanifest, configuration-only tuning,
-locales, security, delivery) and templates to start from.
-
 ## License
 
 Documentation and framework: LXRCore Framework License v1.0 — see
