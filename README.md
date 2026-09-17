@@ -43,6 +43,13 @@ documentation hub; the code lives in the `lxr-*` repositories of
 | lxr-mapcolor | [resources/lxr-mapcolor.md](resources/lxr-mapcolor.md) |
 | txAdminRecipe | [resources/txAdminRecipe.md](resources/txAdminRecipe.md) |
 
+## UI Kit
+
+Every `lxr-*` NUI is built on the **LXR UI Kit** ([ui-kit/LXR-UI-KIT.md](ui-kit/LXR-UI-KIT.md)):
+six inks, one accent, radius 0, index rows, Fraunces / Inter / JetBrains Mono / Noto
+Sans Georgian shipped with the resource. Copy `ui-kit/html/` into a resource and read
+the guide; open `ui-kit/styleguide-standalone.html` in a browser to see every component.
+
 ## Writing resources for LXRCore
 
 The [redm-agent](redm-agent/README.md) folder holds the standards every
