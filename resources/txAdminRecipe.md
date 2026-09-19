@@ -95,7 +95,7 @@ there, deploy from a fork or change `ref:` to the release tag you want.
 | | |
 |---|---|
 | 🌐 Website | [lxrcore.com](https://www.lxrcore.com) |
-| 🛠 Dev Discord | [discord.gg/ZHMKVYyhBa](https://discord.gg/ZHMKVYyhBa) |
+| 🛠 Dev Discord | [discord.gg/ZHMKVYyhBa](https://discord.gg/GAhk8cgXe9) |
 | Community | [discord.gg/wolvesland](https://discord.gg/wolvesland) |
 
 > © 2026 iBoss21 / LXRCore | [lxrcore.com](https://www.lxrcore.com) | All Rights Reserved
