@@ -54,3 +54,9 @@ the guide; open `ui-kit/styleguide-standalone.html` in a browser to see every co
 
 Documentation and framework: LXRCore Framework License v1.0 — see
 [LICENSE](LICENSE). © 2026 iBoss21 / LXRCore | [lxrcore.com](https://www.lxrcore.com) | All Rights Reserved
+
+## Audits
+
+* [Every RSG / VORP / QBR repo vs LXRCore v3 (2026-09-19)](audits/frameworks-2026-09-19.md) — the gap list per domain, the closing order, the progress log.
+* [The cores (2026-09-17)](audits/cores-2026-09-17.md) — what the other cores get wrong and what we do instead.
+* [Mouse / keyboard camera in the creator, tailor and barber](core/mouse-camera.md) — how it is done, for anyone adding a screen.
