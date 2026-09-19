@@ -270,3 +270,6 @@ Progress is recorded per item below as it lands (date · resource · what · com
 * 2026-09-19 · lxr-shops · prices that move (per store/item drift, clamps, hourly easing, persisted); hours/job lock/gold/butchers/trappers were already there · `prices that move`
 * 2026-09-19 · lxr-bank · safe deposit box per character per branch · `the safe deposit box` — left: savings interest (owner's economy call), money clip (bank notes cover it)
 * 2026-09-19 · lxr-hunting · every wild animal of the game (64 kinds / 91 models) + catalog pelts/feathers · `every wild animal…` — left: carcass on the horse's back, trapper vendors are lxr-shops counters already
+* 2026-09-19 · lxr-business · jobs held + /myjobs switch/leave, billing with receipt items · `jobs held…` — left: gang desks (gangs exist in the core registry; a gang page like the business page)
+* 2026-09-19 · lxr-hud · arrival card (zone notify) · `arrival card`
+* deferred · lxr-fishing · the owner's iboss21/lxr-fishing (6k, native fishing struct via a JS helper) is the base; a dedicated session rebuilds it native v3 (zones/species/baits/journal/tackle counters via lxr-shops, tournaments later)
