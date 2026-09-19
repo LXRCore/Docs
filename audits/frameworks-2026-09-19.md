@@ -273,3 +273,5 @@ Progress is recorded per item below as it lands (date · resource · what · com
 * 2026-09-19 · lxr-business · jobs held + /myjobs switch/leave, billing with receipt items · `jobs held…` — left: gang desks (gangs exist in the core registry; a gang page like the business page)
 * 2026-09-19 · lxr-hud · arrival card (zone notify) · `arrival card`
 * deferred · lxr-fishing · the owner's iboss21/lxr-fishing (6k, native fishing struct via a JS helper) is the base; a dedicated session rebuilds it native v3 (zones/species/baits/journal/tackle counters via lxr-shops, tournaments later)
+* 2026-09-19 · lxr-frontier · washing (bathhouse tubs + /wash at water) · `washing…` — left: the game's bathing anim scenes (deluxe bath with an attendant) need in-game verification; bandana = the wheel's mask state; crouch/first-person not done
+* 2026-09-19 · lxr-mining / lxr-hunting / lxr-inventory · tools wear out and break (durability on the tile) · `tool durability…` — left: herb nodes across the map (lxr-farming has fields; a foraging layer is a new piece), lumberjack (no verified standing-tree mechanic in the game data — chopping is a log scenario)
