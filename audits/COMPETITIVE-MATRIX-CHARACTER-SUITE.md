@@ -17,7 +17,7 @@ the reference clones), and our own code. "✓" = shipped and verified (offline s
 | Character traits step (perks / flaws / skills, budgets, presets, linked flaws) | ✓ 63-trait engine, published modifiers for other scripts | — | — | — | — | — | — | — |
 | Spawn map (towns with region / services, last position, random, arrival protection) | ✓ | ○ selector | ○ | ○ | — | — | rsg-spawn | vorp spawn |
 | Identity validation server-side (names, birth years, blocklist, Unicode) | ✓ EN + Georgian | ○ | ○ | ○ | ○ | ○ | basic | basic |
-| Slots per licence / ace / per-identifier | ✓ | ○ | ○ | ○ Discord roles | — | — | config | users.char |
+| Slots per licence / ace / per-identifier / Discord role | ✓ (Discord roles **added today**) | ○ | ○ | ○ Discord roles | — | — | config | users.char |
 | Legacy character import (rsg / vorp looks) | ✓ hash-driven, dry run, export back | — | — | — | — | — | n/a | n/a |
 | Escrow layout with open bridge + docs set | ✓ 7 docs | ○ | ○ | ○ | ○ | ○ | open | open |
 
@@ -50,15 +50,15 @@ the reference clones), and our own code. "✓" = shipped and verified (offline s
 | Makeup layers (eyeliner, shadow, lipstick, blush, foundation, painted masks, brows) | ✓ | ○ | — | — | — |
 | Orbit camera around the head, chair scenario | ✓ | ○ | ○ | — | — |
 | Grooming kits from the satchel that wear out | ✓ | — | — | — | — |
-| Player-owned barber businesses | — (lxr-business handles ownership framework-side) | — | ✓ €55 | — | — |
+| Player-owned barber businesses (buy, till cut, withdraw, sell) | ✓ **added today**, every framework | — | ✓ €55 | — | — |
 | Prices per part, dye price, town multiplier | ✓ | ○ | ○ | flat | flat |
 
-## Where we are behind, honestly, and what is done about it today
+## Where we were behind, honestly, and what was done about it today
 
 1. **Store mannequins** (JOS sells it as a €30 add-on) — added: `Config.Mannequins` per tailor, a posed ped wearing a ready-made outfit, "Buy this look" on the eye card.
 2. **Ready-made outfits for sale** (JOS €40 add-on, MulderDev's ten) — added: `Config.ReadyOutfits`, listed on the Outfits tab with a price, bought in one click.
-3. **Player-owned barber businesses** (RicX) — not in the barber itself by design; wolves.land runs ownership through lxr-business. Listed so nobody claims parity where there is none.
-4. **Discord-role slots** (RCO) — ours are ace-based; a Discord-role check needs a bot token and belongs to the framework's permission layer, not the creator. Ace-based slots cover the same use through txAdmin / discord ace resources.
+3. **Player-owned barber businesses** (RicX €55) — added: `Config.Business` in lxr-barber; buy a chair, the owner's cut of every bill into a till, withdraw / sell at the chair, one table on every framework (installed live on LXRCorev3).
+4. **Discord-role slots** (RCO) — added: `Config.Characters.discord` in lxr-creator (bot token + guild, roles → slots, cached per session, silent fallback).
 5. **Tattoos** (RCO "tattoo parlour") — the game has no tattoo system; RCO composes face overlays. Our 21 overlay layers include the same painted-mask / scar sheets; no separate parlour screen.
 
 Claims we do not make: piece counts against RCO's "15,700" — ours is *every hash the game has* per category (harvested, not hand-listed), which is the same ceiling; we have not counted them the same way.

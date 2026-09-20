@@ -148,8 +148,10 @@ connected client, and kit wear — needs RedM.
 MulderDev and the free rsg / vorp baseline. The two gaps it exposed were closed the same morning in lxr-clothing:
 **ready-made outfits for sale** (`Config.ReadyOutfits`, Ready-made section on the Outfits tab, `outfit buy`) and **store
 mannequins** with "Buy this look" (`Config.Mannequins`, `lxr-clothing:mannequins` RPC, `lxr-interact` AddEntity). Page
-flow verified in the browser; server booted clean on LXRCorev3. Remaining honest gaps: player-owned barber businesses
-(RicX — ownership belongs to lxr-business), Discord-role slots (RCO — ace-based here).
+flow verified in the browser; server booted clean on LXRCorev3. Then the last two rows were closed as well: **player-owned barber shops** (`Config.Business` in lxr-barber,
+`lxr_barber_shops` installed live on LXRCorev3, `/barbershop`, eye-card menu) and **Discord-role character slots**
+(`Config.Characters.discord` in lxr-creator). The matrix now has no row where a competitor ships something the suite
+does not; RCO's 'tattoo parlour' is the same overlay sheets under another screen.
 
 ## 5. Open work, in order (for the Tebex box)
 
