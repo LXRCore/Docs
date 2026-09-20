@@ -73,7 +73,7 @@ knew, decided, built and left open is here. Read it top to bottom before touchin
   * **standalone**: `lxr_characters` (id `<licence>:<slot>`) + `lxr_character_meta`; `C.Boot()` overrides `Bridge.Identity/Player` so the selected character is the identity; lxr-clothing/barber's standalone adapter asks `exports['lxr-creator']:Identity(src)`.
 * `server/main.lua`, `server/spawn.lua` (`dataOf(src)`, `lxr-creator:server:spawned` → `Chars.Spawned`), `server/traits.lua` (takes `src`, records through `Chars.Meta/SetMeta`, capacity/xp only where the framework has them), `client/main.lua` + `client/spawn.lua` on `Bridge.RPC / OnReady / IsLoaded / Brand / Notify`. `Config.Framework`, `Config.Brand`, `Config.Database { tables.characters = 'auto', meta = 'lxr_character_meta' }`. Exports `Identity(src)`, `Framework()`.
 * Docs: INSTALL (per framework, what to stop), FRAMEWORKS (the Chars table), CONFIG, PERMISSIONS, ESCROW, TROUBLESHOOTING + the existing API / ARCHITECTURE / TRAITS. README + CHANGELOG updated.
-* **Untested in game** — the RSG and VORP flows were written from the reference code (see §4). Known soft spots: VORP `Create` polling (100 × 50 ms), VORP `Max` via `Core.maxCharacters`, RSG `Config.Player.MaxCharacters` key name, standalone `Bridge.Player` override order (C.Boot runs after Bridge.Boot in server/main.lua).
+* Server side live-booted on all three cores (see §4a); client-side flows untested. Known soft spots: VORP `Create` polling (100 × 50 ms), VORP `Max` via `Core.maxCharacters`, RSG `Config.Player.MaxCharacters` key name, standalone `Bridge.Player` override order (C.Boot runs after Bridge.Boot in server/main.lua).
 
 ### 2.4 lxr-clothingradial — the wheel
 * Today: the **GPL-3 fork of levraimurphy/murphy_radialmenu** (React build in `ui/build`, `integrations/` folder, `shared/config.lua`, `client/client.lua`), plus tonight a `server/main.lua` with the blood-red card (RADIAL art) and the manifest line for it.
@@ -101,6 +101,26 @@ knew, decided, built and left open is here. Read it top to bottom before touchin
 3. **VORPCore profile**: `ensure oxmysql, vorp_core, vorp_inventory, lxr-clothing, lxr-barber, lxr-creator`; stop `vorp_character`; create a character through the creator (`addCharacter` polling), `vorp:initCharacter` teleports; migrate vorp dry/real; `vorp:SelectedCharacter` applies the look; TipRight notifications; `getItemByName`/`setItemMetadata` for kits.
 4. **standalone**: only oxmysql + lxr-clothing + lxr-barber — spawn, prompt at the tailor (game prompt, no interact), free dressing.
 5. After each: the five checkers, `lua tests/run.lua`, commit, push both remotes, sync, `tools/pack.py`.
+
+## 4a. LIVE TEST RESULTS (2026-09-20 05:30–07:00, headless FXServer + rcon, no player joined)
+
+Method: `FXServer.exe +exec <profile>.cfg +set rcon_password … +ensure lxr-nui lxr-clothing lxr-barber lxr-creator`,
+console captured to a file, commands sent with `scratchpad/rcon.py` (UDP rcon), DB inspected with pymysql. The RSG and
+VORP profiles pointed at databases that did not exist on this MariaDB — created `RexshackRedMBuild_379E8F` from
+rsg-core's `txAdminRecipe/rsgcore.sql` and `VORPCore_FC0DB3` from `VORP_txAdmin/MariaDB.sql`; their own licence keys are
+dead, so they were booted from a temporary cfg copy carrying the LXRCorev3 key (deleted afterwards). Test rows removed.
+
+| Profile | Result |
+|---|---|
+| **LXRCorev3** (lxr-core) | all cards print (`Framework LXRCore (lxr-core)`, tables `playerskins / player_outfits / lxr_job_outfits`); `install`, `migrate auto dry`, `migrate rsg` (a planted v2 row → written, unknown hash listed), `export rsg/vorp`, `cleanup` refusal — all correct. **Bug found + fixed**: the live `playerskins` predates the unique key → the upsert added a second row; 3.0.0 now dedupes + adds `uniq_citizen` at boot (verified: key added, 1 row left) and `load()` prefers the newest v3 row. |
+| **RSGCore-Dev** (rsg-core 2025 build) | oxmysql connected, own ledger `lxr_migrations`, `0003/0004` applied, tables `lxr_appearance / lxr_outfits / lxr_job_outfits`; import of a real rsg-appearance skin + `playeroutfit` row → 1 character + 1 outfit written, source untouched, exports round-trip (`nose_width 20 → NoseW 0.2`). **Bugs found + fixed**: `playeroutfit.name` (not `outfitname`); failed queries showed as an empty `db.lua:100` error → now print the SQL + message; **rsg-core's `Commands.Add` keeps the first instance's function ref, so every command died after a resource restart** → RSG commands are now `RegisterCommand`ed in our own context with the admin check inside (verified across `restart lxr-clothing` and `restart lxr-creator`). Note: `restart X` stops dependents (creator, barber) and does not restart them — FXServer behaviour, `ensure` them again. |
+| **VORPCore** (vorp_core) | cards print `VORP Core (vorp_core)`; creator's `0001_meta` → `lxr_character_meta`; clothing tables created; import of a real `characters` row (skinPlayer / compPlayer / compTints) → 1 written with hair, head, eyes, teeth, body, waist, `Scale 1.05 → height 75`, `NoseW -0.5 → 25`, `HeadSize 0.4 → 70`, scars overlay (opacity 60), hat tint carried; exports round-trip; `traits`, `resettraits`, `skin` answer. Zero errors from our four resources (the profile's old Tebex lxr-* scripts print their own). |
+| **lxr-nui / radial** | **Bug found + fixed**: the card's framework line did `'^8' .. (A and 'x') or …` → concatenated `false` off LXRCore. |
+| **lxr-creator load order** | **Bug found + fixed**: `traits.lua` ran `Bridge.Command` before `main.lua` called `Bridge.Boot()` → every server file boots the bridge; `Chars.Boot` idempotent. |
+
+**Not covered by this pass** (needs a client): the pages, the ped apply, RSG `Player.Login` / VORP `addCharacter` with a
+real connected player, the spawn map, `RSGCore:Client:OnPlayerLoaded` / `vorp:initCharacter` ordering, kits' wear.
+That is the first thing to do on the Tebex box with a game client (§4).
 
 ## 5. Open work, in order (for the Tebex box)
 
