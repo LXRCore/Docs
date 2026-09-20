@@ -143,6 +143,14 @@ Screenshots could not be captured reliably (the desktop pane was hidden); the DO
 checked. Still untested: the ped itself (apply layer, camera natives), `Player.Login` / `addCharacter` with a
 connected client, and kit wear — needs RedM.
 
+## 4c. Market parity (2026-09-20 09:00)
+`docs/COMPETITIVE-MATRIX-CHARACTER-SUITE.md` — feature-by-feature against Murphy, CAS, RCO, RW, Valenor, JOS, RicX,
+MulderDev and the free rsg / vorp baseline. The two gaps it exposed were closed the same morning in lxr-clothing:
+**ready-made outfits for sale** (`Config.ReadyOutfits`, Ready-made section on the Outfits tab, `outfit buy`) and **store
+mannequins** with "Buy this look" (`Config.Mannequins`, `lxr-clothing:mannequins` RPC, `lxr-interact` AddEntity). Page
+flow verified in the browser; server booted clean on LXRCorev3. Remaining honest gaps: player-owned barber businesses
+(RicX — ownership belongs to lxr-business), Discord-role slots (RCO — ace-based here).
+
 ## 5. Open work, in order (for the Tebex box)
 
 1. In-game test pass (§4) on the three profiles — creator, clothing, barber are all on the bridge now; fix what breaks.
