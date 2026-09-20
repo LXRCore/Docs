@@ -122,6 +122,26 @@ dead, so they were booted from a temporary cfg copy carrying the LXRCorev3 key (
 real connected player, the spawn map, `RSGCore:Client:OnPlayerLoaded` / `vorp:initCharacter` ordering, kits' wear.
 That is the first thing to do on the Tebex box with a game client (§4).
 
+## 4b. PAGE (NUI) TESTS (2026-09-20 07:30, real `index.html` + the offline suites' payloads, Chromium)
+
+Preview pages regenerated from the shipping `index.html` (`html/preview-*.html`, gitignored) with `tests/run.lua --mock`
+payloads; a static server on :8765 (`.claude/launch.json` → `nui-preview`); NUI posts intercepted; the creator page driven
+through its `__LXR_MOCK_CLIENT__` hook answering exactly as `client/main.lua` does (`pin new:` → stage identity →
+`identity` → stage traits → `traits` → stage appearance).
+
+| Page | Driven as a player | Result |
+|---|---|---|
+| lxr-clothing tailor | tabs, pick Hats, step variants (`wear {cat, comp}` live preview), basket row `01 Hats $1.50`, total, Confirm → `save { clothes }` | ✅ no JS errors, payload = what `lxr-clothing:save` validates |
+| lxr-clothing locker | Uniforms tab lists the job's two uniforms, Wear → `outfit { action = 'uniform', arg }` + `wearAll` | ✅ |
+| lxr-clothing embedded (creator mode) | opens free (cart hidden) | ✅ |
+| lxr-barber | step hair → `set { comp, value }` (NPC drawable shape), Makeup tab (Eyeliner / Shadow / Lipstick / Blush / Foundation), Pay → `save { parts }`, total $0.50 | ✅ |
+| lxr-creator | select room (2 / 5 characters, KA name renders), New character → identity form → intro modal → traits (Gunslinger / Tracker presets: perks, linked flaws, skills) → Lock in → appearance stage (wheel zoom, W height, E turn → `cr:nudge`), This is me → `cr:confirm`; spawn map renders the offered towns | ✅ |
+| scene input hardening | synthetic wheel/keys on `document` (target not an Element) threw `e.target.closest is not a function` in all three pages' `onScene` | **fixed** (`instanceof Element` guard) |
+
+Screenshots could not be captured reliably (the desktop pane was hidden); the DOM/network evidence above is what was
+checked. Still untested: the ped itself (apply layer, camera natives), `Player.Login` / `addCharacter` with a
+connected client, and kit wear — needs RedM.
+
 ## 5. Open work, in order (for the Tebex box)
 
 1. In-game test pass (§4) on the three profiles — creator, clothing, barber are all on the bridge now; fix what breaks.
